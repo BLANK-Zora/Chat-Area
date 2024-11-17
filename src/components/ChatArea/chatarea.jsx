@@ -16,7 +16,7 @@ const ChatArea = () => {
   
       try {
         // Send the user's message to the Rasa server
-        const response = await fetch('https://35f5-2401-4900-1c5d-ea4-1d74-6b24-39a5-f506.ngrok-free.app/webhooks/rest/webhook', {
+        const response = await fetch('https://8506-2401-4900-1c5d-ea4-1d74-6b24-39a5-f506.ngrok-free.app/webhooks/rest/webhook', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
