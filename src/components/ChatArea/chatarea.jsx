@@ -22,7 +22,7 @@ const ChatArea = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            sender: "Param", // Unique identifier for the conversation
+            sender: "Ameya", // Unique identifier for the conversation
             message: inputValue, // Message sent by the user
           }),
         });
