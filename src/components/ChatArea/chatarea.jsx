@@ -1,32 +1,33 @@
 import React, { useState } from 'react';
 import './chatarea.css';
 
-const ChatArea = () => {
+const ChatArea = ({senderID}) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  console.log(senderID);
+
 
   const handleSendMessage = async (event) => {
     if (event.key === 'Enter' && inputValue.trim()) {
       // Add the user's message to the chat
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: inputValue, sender: 'user' },
+        { text: inputValue, sender: `${senderID}` },
       ]);
       setInputValue('');
   
       try {
         // Send the user's message to the Rasa server
-        const response = await fetch('https://fec8-2401-4900-83aa-c909-1c03-3cba-edfc-4fe7.ngrok-free.app/webhooks/rest/webhook', {
+        const response = await fetch('http://localhost:5005/webhooks/rest/webhook', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            sender: "Ameya", // Unique identifier for the conversation
+            sender: `${senderID}`, // Unique identifier for the conversation
             message: inputValue, // Message sent by the user
           }),
         });
-  
         if (response.ok) {
           const botResponses = await response.json();
           const newMessages = botResponses.map((botResponse) => ({
